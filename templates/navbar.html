@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-dark glass-nav mb-4">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold text-white" href="/">School Reviews</a>
+    <ul class="navbar-nav ms-auto flex-row gap-3">
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'home' %}active-link{% else %}text-white{% endif %}" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'add_review' %}active-link{% else %}text-white{% endif %}" href="/add-review">Add Review</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if active_page == 'reviews' %}active-link{% else %}text-white{% endif %}" href="/reviews">All Reviews</a>
+      </li>
+    </ul>
+  </div>
+</nav>

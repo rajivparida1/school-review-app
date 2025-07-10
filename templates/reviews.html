@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Reviews</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="p-4">
+  {% include 'navbar.html' %}
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-warning mt-3" role="alert">
+        {{ messages[0] }}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <div class="container">
+    <div class="mb-4">
+      <h3>All Reviews</h3>
+      <form method="get" class="mt-3">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <input type="text" name="q" class="form-control" placeholder="Search by school or location..." value="{{ query or '' }}">
+          </div>
+          <div class="col-md-4">
+            <select name="sort" class="form-select">
+              <option value="low_rating" {% if sort_by == 'low_rating' %}selected{% endif %}>Sort by Rating (Low to High)</option>
+              <option value="high_rating" {% if sort_by == 'high_rating' %}selected{% endif %}>Sort by Rating (High to Low)</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-outline-primary w-100" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>School</th>
+            <th>Reviewer</th>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for review in reviews %}
+          <tr>
+            <td>{{ review[0] }}</td>
+            <td>{{ review[1] }}</td>
+            <td>{{ review[2] }}</td>
+            <td>
+              {% for i in range(review[3]) %}
+                ⭐
+              {% endfor %}
+            </td>
+            <td>{{ review[4] }}</td>
+            <td>{{ review[5] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>School Reviews</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="p-4">
+  {% include 'navbar.html' %}
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 9999;">
+        <div class="toast show align-items-center text-bg-success border-0" role="alert">
+          <div class="d-flex">
+            <div class="toast-body">
+              {{ messages[0] }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+
+  <div class="container">
+    <!-- Review Form -->
+    <div class="glass-box mb-5">
+      <h2 class="mb-4">Submit a School Review</h2>
+      <form method="POST">
+        <div class="mb-3">
+          <input type="text" name="school_name" class="form-control" placeholder="School Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="location" class="form-control" placeholder="Location" required>
+        </div>
+        <div class="mb-3">
+          <input type="text" name="reviewer_name" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+          <input type="number" name="rating" class="form-control" placeholder="Rating (1-5)" min="1" max="5" required>
+        </div>
+        <div class="mb-3">
+          <textarea name="comment" class="form-control" placeholder="Your Comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-light">Submit Review</button>
+      </form>
+    </div>
+
+    
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
